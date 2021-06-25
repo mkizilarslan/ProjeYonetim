@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjeYonetim.Business.Abstract;
-using ProjeYonetim.Data.Abstract;
 using ProjeYonetim.Entities;
 using System.Threading.Tasks;
 
@@ -17,14 +16,14 @@ namespace ProjeYonetim.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetById(int id)
         {
-            var project = await _projectService.GetById(id);
+            var project = await _projectService.ProjectGetByIdAsync(id);
             return View(project);
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var projectList = await _projectService.GetAll();
+            var projectList = await _projectService.ProjectGetAllAsync();
             return View(projectList);
         }
 
@@ -39,7 +38,7 @@ namespace ProjeYonetim.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _projectService.Create(project);
+                await _projectService.ProjectCreateAsync(project);
                 return RedirectToAction(nameof(GetAll));
             }
             return View(project);
@@ -48,7 +47,7 @@ namespace ProjeYonetim.WebUI.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            var project = _projectService.GetById(id).Result;
+            var project = _projectService.ProjectGetByIdAsync(id).Result;
             return View(project);
         }
 
@@ -57,7 +56,7 @@ namespace ProjeYonetim.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _projectService.Update(project);
+                await _projectService.ProjectUpdateAsync(project);
                 return RedirectToAction(nameof(GetAll));
             }
             return View(project);
@@ -66,7 +65,7 @@ namespace ProjeYonetim.WebUI.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var project = _projectService.GetById(id).Result;
+            var project = _projectService.ProjectGetByIdAsync(id).Result;
             return View(project);
         }
 
@@ -75,7 +74,7 @@ namespace ProjeYonetim.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _projectService.Delete(project);
+                await _projectService.ProjectDeleteAsync(project);
                 return RedirectToAction(nameof(GetAll));
             }
             return View(project);

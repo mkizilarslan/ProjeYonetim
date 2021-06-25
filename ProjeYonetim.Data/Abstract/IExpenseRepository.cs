@@ -7,8 +7,8 @@ namespace ProjeYonetim.Data.Abstract
 {
     public interface IExpenseRepository : IRepository<Expense>
     {
-        Task<List<Project>> GetProject();
-        Task<List<Expense>> GetExpenseProjects();
-        Task<Expense> GetExpenseProject(int id);
+        Task<List<Project>> GetProjectAsync();
+        Task<List<Expense>> GetExpenseProjectsAsync();
+        Task<Expense> GetExpenseProjectAsync(int id);
     }
 }

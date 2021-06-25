@@ -13,25 +13,25 @@ namespace ProjeYonetim.Business.Concrete
         {
             _toDoListRepository = toDoListRepository;
         }
-        public async Task Create(ToDoList entity)
+        public async Task ToDoListCreateAsync(ToDoList entity)
         {
-            await _toDoListRepository.Create(entity);
+            await _toDoListRepository.CreateAsync(entity);
         }
-        public async Task Delete(ToDoList entity)
+        public async Task ToDoListDeleteAsync(ToDoList entity)
         {
-            await _toDoListRepository.Delete(entity);
+            await _toDoListRepository.DeleteAsync(entity);
         }
-        public async Task<List<ToDoList>> GetAll()
+        public async Task<List<ToDoList>> ToDoListGetAllAsync()
         {
-            return await _toDoListRepository.GetAll();
+            return await _toDoListRepository.GetAllAsync();
         }
-        public async Task<ToDoList> GetById(int id)
+        public async Task<ToDoList> ToDoListGetByIdAsync(int id)
         {
-            return await _toDoListRepository.GetById(id);
+            return await _toDoListRepository.GetByIdAsync(id);
         }
-        public async Task Update(ToDoList entity)
+        public async Task ToDoListUpdateAsync(ToDoList entity)
         {
-            await _toDoListRepository.Update(entity);
+            await _toDoListRepository.UpdateAsync(entity);
         }
     }
 }

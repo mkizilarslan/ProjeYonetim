@@ -13,25 +13,25 @@ namespace ProjeYonetim.Business.Concrete
         {
             _salesRepository = salesRepository;
         }
-        public async Task Create(Sales entity)
+        public async Task SalesCreateAsync(Sales entity)
         {
-            await _salesRepository.Create(entity);
+            await _salesRepository.CreateAsync(entity);
         }
-        public async Task Delete(Sales entity)
+        public async Task SalesDeleteAsync(Sales entity)
         {
-            await _salesRepository.Delete(entity);
+            await _salesRepository.DeleteAsync(entity);
         }
-        public async Task<List<Sales>> GetAll()
+        public async Task<List<Sales>> SalesGetAllAsync()
         {
-            return await _salesRepository.GetAll();
+            return await _salesRepository.GetAllAsync();
         }
-        public async Task<Sales> GetById(int id)
+        public async Task<Sales> SalesGetByIdAsync(int id)
         {
-            return await _salesRepository.GetById(id);
+            return await _salesRepository.GetByIdAsync(id);
         }
-        public async Task Update(Sales entity)
+        public async Task SalesUpdateAsync(Sales entity)
         {
-            await _salesRepository.Update(entity);
+            await _salesRepository.UpdateAsync(entity);
         }
     }
 }

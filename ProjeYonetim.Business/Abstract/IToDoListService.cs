@@ -9,10 +9,10 @@ namespace ProjeYonetim.Business.Abstract
 {
     public interface IToDoListService
     {
-        Task<ToDoList> GetById(int id);
-        Task<List<ToDoList>> GetAll();
-        Task Create(ToDoList entity);
-        Task Update(ToDoList entity);
-        Task Delete(ToDoList entity);
+        Task<ToDoList> ToDoListGetByIdAsync(int id);
+        Task<List<ToDoList>> ToDoListGetAllAsync();
+        Task ToDoListCreateAsync(ToDoList entity);
+        Task ToDoListUpdateAsync(ToDoList entity);
+        Task ToDoListDeleteAsync(ToDoList entity);
     }
 }

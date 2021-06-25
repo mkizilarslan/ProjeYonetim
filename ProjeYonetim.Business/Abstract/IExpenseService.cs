@@ -9,10 +9,10 @@ namespace ProjeYonetim.Business.Abstract
 {
     public interface IExpenseService
     {
-        Task<Expense> GetById(int id);
-        Task<List<Expense>> GetAll();
-        Task Create(Expense entity);
-        Task Update(Expense entity);
-        Task Delete(Expense entity);
+        Task<Expense> ExpenseGetByIdAsync(int id);
+        Task<List<Expense>> ExpenseGetAllAsync();
+        Task ExpenseCreateAsync(Expense entity);
+        Task ExpenseUpdateAsync(Expense entity);
+        Task ExpenseDeleteAsync(Expense entity);
     }
 }

@@ -7,10 +7,10 @@ namespace ProjeYonetim.Data.Abstract
 {
     public interface IToDoListRepository : IRepository<ToDoList>
     {
-        Task<List<Project>> GetProject();
-        Task<List<Employee>> GetEmployee();
-        Task<List<ToDoList>> GetToDoListProjectAndEmployees();
-        Task<ToDoList> GetToDoListProjectAndEmployee(int id);
+        Task<List<Project>> GetProjectAsync();
+        Task<List<Employee>> GetEmployeeAsync();
+        Task<List<ToDoList>> GetToDoIncludeProAndEmpListAsync();
+        Task<ToDoList> GetToDoProAndEmpAsync(int id);
         Task AddEmployeeToProjectAsync(int employeeId, int projectId);
         Task DeleteEmployeeToProjectAsync(int employeeId, int projectId);
 

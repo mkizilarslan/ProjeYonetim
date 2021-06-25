@@ -11,7 +11,7 @@ namespace ProjeYonetim.Data.Concrete.EFCore
 {
     public class SalesRepository : EFCoreRepository<Sales, ProjeYonetimDbContext>, ISalesRepository
     {
-        public async Task<List<Employee>> GetDepartment()
+        public async Task<List<Employee>> GetDepartmentAsync()
         {
             using (var context = new ProjeYonetimDbContext())
             {
@@ -19,7 +19,7 @@ namespace ProjeYonetim.Data.Concrete.EFCore
             }
         }
 
-        public async Task<List<Sales>> GetSalesEmployees()
+        public async Task<List<Sales>> GetSalesEmployeesAsync()
         {
             using (var context = new ProjeYonetimDbContext())
             {
@@ -27,7 +27,7 @@ namespace ProjeYonetim.Data.Concrete.EFCore
             }
         }
 
-        public async Task<Sales> GetSalesEmployee(int id)
+        public async Task<Sales> GetSalesEmployeeAsync(int id)
         {
             using (var context = new ProjeYonetimDbContext())
             {

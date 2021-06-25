@@ -20,22 +20,22 @@ namespace ProjeYonetim.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetById(int id)
         {
-            var toDo = await _toDoListRepository.GetToDoListProjectAndEmployee(id);
+            var toDo = await _toDoListRepository.GetToDoProAndEmpAsync(id);
             return View(toDo);
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var toDoList = await _toDoListRepository.GetToDoListProjectAndEmployees();
+            var toDoList = await _toDoListRepository.GetToDoIncludeProAndEmpListAsync();
             return View(toDoList);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            ViewData["EmployeeId"] = new SelectList(_toDoListRepository.GetEmployee().Result, "Id", "FullName");
-            ViewData["ProjectId"] = new SelectList(_toDoListRepository.GetProject().Result, "Id", "ProjectName");
+            ViewData["EmployeeId"] = new SelectList(_toDoListRepository.GetEmployeeAsync().Result, "Id", "FullName");
+            ViewData["ProjectId"] = new SelectList(_toDoListRepository.GetProjectAsync().Result, "Id", "ProjectName");
             return View();
         }
 
@@ -44,8 +44,8 @@ namespace ProjeYonetim.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _toDoListService.Create(toDo);
-                await _toDoListRepository.AddEmployeeToProjectAsync(toDo.EmployeeId, toDo.ProjectId);
+                await _toDoListService.ToDoListCreateAsync(toDo);
+                //await _toDoListRepository.AddEmployeeToProjectAsync(toDo.EmployeeId, toDo.ProjectId);
                 return RedirectToAction(nameof(GetAll));
             }
             return View(toDo);
@@ -54,9 +54,9 @@ namespace ProjeYonetim.WebUI.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            var toDo = _toDoListService.GetById(id).Result;
-            ViewData["EmployeeId"] = new SelectList(_toDoListRepository.GetEmployee().Result, "Id", "FullName");
-            ViewData["ProjectId"] = new SelectList(_toDoListRepository.GetProject().Result, "Id", "ProjectName");
+            var toDo = _toDoListService.ToDoListGetByIdAsync(id).Result;
+            ViewData["EmployeeId"] = new SelectList(_toDoListRepository.GetEmployeeAsync().Result, "Id", "FullName");
+            ViewData["ProjectId"] = new SelectList(_toDoListRepository.GetProjectAsync().Result, "Id", "ProjectName");
             return View(toDo);
         }
 
@@ -65,7 +65,7 @@ namespace ProjeYonetim.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _toDoListService.Update(toDo);
+                await _toDoListService.ToDoListUpdateAsync(toDo);
                 return RedirectToAction(nameof(GetAll));
             }
             return View(toDo);
@@ -74,7 +74,7 @@ namespace ProjeYonetim.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            var toDo = await _toDoListRepository.GetToDoListProjectAndEmployee(id);
+            var toDo = await _toDoListRepository.GetToDoProAndEmpAsync(id);
             return View(toDo);
         }
 
@@ -83,8 +83,8 @@ namespace ProjeYonetim.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                //await _toDoListService.Delete(toDo);
-                await _toDoListRepository.Delete(toDo); //DeleteEmployeeToProjectAsync(toDo.EmployeeId, toDo.ProjectId);
+                await _toDoListService.ToDoListDeleteAsync(toDo);
+                //await _toDoListRepository.DeleteAsync(toDo); //DeleteEmployeeToProjectAsync(toDo.EmployeeId, toDo.ProjectId);
                 return RedirectToAction(nameof(GetAll));
             }
             return View(toDo);

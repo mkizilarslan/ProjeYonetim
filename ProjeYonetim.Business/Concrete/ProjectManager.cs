@@ -13,25 +13,25 @@ namespace ProjeYonetim.Business.Concrete
         {
             _projectDal = projectDal;
         }
-        public async Task Create(Project entity)
+        public async Task ProjectCreateAsync(Project entity)
         {
-            await _projectDal.Create(entity);
+            await _projectDal.CreateAsync(entity);
         }
-        public async Task Delete(Project entity)
+        public async Task ProjectDeleteAsync(Project entity)
         {
-            await _projectDal.Delete(entity);
+            await _projectDal.DeleteAsync(entity);
         }
-        public async Task<List<Project>> GetAll()
+        public async Task<List<Project>> ProjectGetAllAsync()
         {
-            return await _projectDal.GetAll();
+            return await _projectDal.GetAllAsync();
         }
-        public async Task<Project> GetById(int id)
+        public async Task<Project> ProjectGetByIdAsync(int id)
         {
-            return await _projectDal.GetById(id);
+            return await _projectDal.GetByIdAsync(id);
         }
-        public async Task Update(Project entity)
+        public async Task ProjectUpdateAsync(Project entity)
         {
-            await _projectDal.Update(entity);
+            await _projectDal.UpdateAsync(entity);
         }
     }
 }

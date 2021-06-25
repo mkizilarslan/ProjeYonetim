@@ -13,25 +13,25 @@ namespace ProjeYonetim.Business.Concrete
         {
             _employeeProjectRepository = employeeProjectRepository;
         }
-        public async Task Create(EmployeeProject entity)
+        public async Task EPCreateAsync(EmployeeProject entity)
         {
-            await _employeeProjectRepository.Create(entity);
+            await _employeeProjectRepository.CreateAsync(entity);
         }
-        public async Task Delete(EmployeeProject entity)
+        public async Task EPDeleteAsync(EmployeeProject entity)
         {
-            await _employeeProjectRepository.Delete(entity);
+            await _employeeProjectRepository.DeleteAsync(entity);
         }
-        public async Task<List<EmployeeProject>> GetAll()
+        public async Task<List<EmployeeProject>> EPGetAllAsync()
         {
-            return await _employeeProjectRepository.GetAll();
+            return await _employeeProjectRepository.GetAllAsync();
         }
-        public async Task<EmployeeProject> GetById(int id)
+        public async Task<EmployeeProject> EPGetByIdAsync(int id)
         {
-            return await _employeeProjectRepository.GetById(id);
+            return await _employeeProjectRepository.GetByIdAsync(id);
         }
-        public async Task Update(EmployeeProject entity)
+        public async Task EPUpdateAsync(EmployeeProject entity)
         {
-            await _employeeProjectRepository.Update(entity);
+            await _employeeProjectRepository.UpdateAsync(entity);
         }
     }
 }

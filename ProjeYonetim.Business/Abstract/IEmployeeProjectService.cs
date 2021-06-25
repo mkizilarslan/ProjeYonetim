@@ -9,10 +9,10 @@ namespace ProjeYonetim.Business.Abstract
 {
     public interface IEmployeeProjectService
     {
-        Task<EmployeeProject> GetById(int id);
-        Task<List<EmployeeProject>> GetAll();
-        Task Create(EmployeeProject entity);
-        Task Update(EmployeeProject entity);
-        Task Delete(EmployeeProject entity);
+        Task<EmployeeProject> EPGetByIdAsync(int id);
+        Task<List<EmployeeProject>> EPGetAllAsync();
+        Task EPCreateAsync(EmployeeProject entity);
+        Task EPUpdateAsync(EmployeeProject entity);
+        Task EPDeleteAsync(EmployeeProject entity);
     }
 }

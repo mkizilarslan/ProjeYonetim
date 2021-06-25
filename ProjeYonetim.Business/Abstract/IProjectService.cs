@@ -9,10 +9,10 @@ namespace ProjeYonetim.Business.Abstract
 {
     public interface IProjectService
     {
-        Task<Project> GetById(int id);
-        Task<List<Project>> GetAll();
-        Task Create(Project entity);
-        Task Update(Project entity);
-        Task Delete(Project entity);
+        Task<Project> ProjectGetByIdAsync(int id);
+        Task<List<Project>> ProjectGetAllAsync();
+        Task ProjectCreateAsync(Project entity);
+        Task ProjectUpdateAsync(Project entity);
+        Task ProjectDeleteAsync(Project entity);
     }
 }

@@ -20,21 +20,21 @@ namespace ProjeYonetim.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetById(int id)
         {
-            var expense = await _expenseRepository.GetExpenseProject(id);
+            var expense = await _expenseRepository.GetExpenseProjectAsync(id);
             return View(expense);
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var expenseList = await _expenseRepository.GetExpenseProjects();
+            var expenseList = await _expenseRepository.GetExpenseProjectsAsync();
             return View(expenseList);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            ViewData["ProjectId"] = new SelectList(_expenseRepository.GetProject().Result, "Id", "ProjectName");
+            ViewData["ProjectId"] = new SelectList(_expenseRepository.GetProjectAsync().Result, "Id", "ProjectName");
             return View();
         }
 
@@ -43,7 +43,7 @@ namespace ProjeYonetim.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _expenseService.Create(expense);
+                await _expenseService.ExpenseCreateAsync(expense);
                 return RedirectToAction(nameof(GetAll));
             }
             return View(expense);
@@ -52,8 +52,8 @@ namespace ProjeYonetim.WebUI.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            var expense = _expenseService.GetById(id).Result;
-            ViewData["ProjectId"] = new SelectList(_expenseRepository.GetProject().Result, "Id", "ProjectName");
+            var expense = _expenseService.ExpenseGetByIdAsync(id).Result;
+            ViewData["ProjectId"] = new SelectList(_expenseRepository.GetProjectAsync().Result, "Id", "ProjectName");
             return View(expense);
         }
 
@@ -62,7 +62,7 @@ namespace ProjeYonetim.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _expenseService.Update(expense);
+                await _expenseService.ExpenseUpdateAsync(expense);
                 return RedirectToAction(nameof(GetAll));
             }
             return View(expense);
@@ -71,7 +71,7 @@ namespace ProjeYonetim.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            var expense = await _expenseRepository.GetExpenseProject(id);
+            var expense = await _expenseRepository.GetExpenseProjectAsync(id);
             return View(expense);
         }
 
@@ -80,7 +80,7 @@ namespace ProjeYonetim.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _expenseService.Delete(expense);
+                await _expenseService.ExpenseDeleteAsync(expense);
                 return RedirectToAction(nameof(GetAll));
             }
             return View(expense);

@@ -8,8 +8,8 @@ namespace ProjeYonetim.Data.Abstract
 {
     public interface ISalesRepository : IRepository<Sales>
     {
-        Task<List<Employee>> GetDepartment();
-        Task<List<Sales>> GetSalesEmployees();
-        Task<Sales> GetSalesEmployee(int id);
+        Task<List<Employee>> GetDepartmentAsync();
+        Task<List<Sales>> GetSalesEmployeesAsync();
+        Task<Sales> GetSalesEmployeeAsync(int id);
     }
 }

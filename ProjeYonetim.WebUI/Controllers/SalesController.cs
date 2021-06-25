@@ -20,21 +20,21 @@ namespace ProjeYonetim.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetById(int id)
         {
-            var sales = await _salesRepository.GetSalesEmployee(id);
+            var sales = await _salesRepository.GetSalesEmployeeAsync(id);
             return View(sales);
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var salesList = await _salesRepository.GetSalesEmployees();
+            var salesList = await _salesRepository.GetSalesEmployeesAsync();
             return View(salesList);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            ViewData["EmployeeId"] = new SelectList(_salesRepository.GetDepartment().Result, "Id", "FullName");
+            ViewData["EmployeeId"] = new SelectList(_salesRepository.GetDepartmentAsync().Result, "Id", "FullName");
             return View();
         }
 
@@ -43,7 +43,7 @@ namespace ProjeYonetim.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _salesService.Create(sales);
+                await _salesService.SalesCreateAsync(sales);
                 return RedirectToAction(nameof(GetAll));
             }
             return View(sales);
@@ -52,8 +52,8 @@ namespace ProjeYonetim.WebUI.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            var sales = _salesService.GetById(id).Result;
-            ViewData["EmployeeId"] = new SelectList(_salesRepository.GetDepartment().Result, "Id", "FullName");
+            var sales = _salesService.SalesGetByIdAsync(id).Result;
+            ViewData["EmployeeId"] = new SelectList(_salesRepository.GetDepartmentAsync().Result, "Id", "FullName");
             return View(sales);
         }
 
@@ -62,7 +62,7 @@ namespace ProjeYonetim.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _salesService.Update(sales);
+                await _salesService.SalesUpdateAsync(sales);
                 return RedirectToAction(nameof(GetAll));
             }
             return View(sales);
@@ -71,7 +71,7 @@ namespace ProjeYonetim.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            var sales = await _salesRepository.GetSalesEmployee(id);
+            var sales = await _salesRepository.GetSalesEmployeeAsync(id);
             return View(sales);
         }
 
@@ -80,7 +80,7 @@ namespace ProjeYonetim.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _salesService.Delete(sales);
+                await _salesService.SalesDeleteAsync(sales);
                 return RedirectToAction(nameof(GetAll));
             }
             return View(sales);

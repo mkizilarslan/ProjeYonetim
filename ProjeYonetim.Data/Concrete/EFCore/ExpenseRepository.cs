@@ -10,7 +10,7 @@ namespace ProjeYonetim.Data.Concrete.EFCore
 {
     public class ExpenseRepository : EFCoreRepository<Expense, ProjeYonetimDbContext>, IExpenseRepository
     {
-        public async Task<List<Project>> GetProject()
+        public async Task<List<Project>> GetProjectAsync()
         {
             using (var context = new ProjeYonetimDbContext())
             {
@@ -18,7 +18,7 @@ namespace ProjeYonetim.Data.Concrete.EFCore
             }
         }
 
-        public async Task<List<Expense>> GetExpenseProjects()
+        public async Task<List<Expense>> GetExpenseProjectsAsync()
         {
             using (var context = new ProjeYonetimDbContext())
             {
@@ -26,7 +26,7 @@ namespace ProjeYonetim.Data.Concrete.EFCore
             }
         }
 
-        public async Task<Expense> GetExpenseProject(int id)
+        public async Task<Expense> GetExpenseProjectAsync(int id)
         {
             using (var context = new ProjeYonetimDbContext())
             {

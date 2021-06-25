@@ -8,10 +8,10 @@ namespace ProjeYonetim.Core.DataAccess
 {
     public interface IRepository<T>
     {
-        Task<T> GetById(int id);
-        Task<List<T>> GetAll();
-        Task Create(T entity);
-        Task Update(T entity);
-        Task Delete(T entity);
+        Task<T> GetByIdAsync(int id);
+        Task<List<T>> GetAllAsync();
+        Task CreateAsync(T entity);
+        Task UpdateAsync(T entity);
+        Task DeleteAsync(T entity);
     }
 }

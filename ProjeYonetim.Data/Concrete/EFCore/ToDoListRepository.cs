@@ -11,7 +11,7 @@ namespace ProjeYonetim.Data.Concrete.EFCore
     public class ToDoListRepository : EFCoreRepository<ToDoList, ProjeYonetimDbContext>, IToDoListRepository
     {
 
-        public async Task<List<Project>> GetProject()
+        public async Task<List<Project>> GetProjectAsync()
         {
             using (var context = new ProjeYonetimDbContext())
             {
@@ -19,7 +19,7 @@ namespace ProjeYonetim.Data.Concrete.EFCore
             }
         }
 
-        public async Task<List<Employee>> GetEmployee()
+        public async Task<List<Employee>> GetEmployeeAsync()
         {
             using (var context = new ProjeYonetimDbContext())
             {
@@ -27,7 +27,7 @@ namespace ProjeYonetim.Data.Concrete.EFCore
             }
         }
 
-        public async Task<List<ToDoList>> GetToDoListProjectAndEmployees()
+        public async Task<List<ToDoList>> GetToDoIncludeProAndEmpListAsync()
         {
             using (var context = new ProjeYonetimDbContext())
             {
@@ -35,7 +35,7 @@ namespace ProjeYonetim.Data.Concrete.EFCore
             }
         }
 
-        public async Task<ToDoList> GetToDoListProjectAndEmployee(int id)
+        public async Task<ToDoList> GetToDoProAndEmpAsync(int id)
         {
             using (var context = new ProjeYonetimDbContext())
             {
@@ -75,12 +75,23 @@ namespace ProjeYonetim.Data.Concrete.EFCore
             }
         }
 
-        public override async Task Delete(ToDoList entity)
+        public override async Task DeleteAsync(ToDoList entity)
         {
             using (var context = new ProjeYonetimDbContext())
             {
                 context.Set<ToDoList>().Remove(entity);
                 await DeleteEmployeeToProjectAsync(entity.EmployeeId, entity.ProjectId);
+                await context.SaveChangesAsync();
+            }
+        }
+
+        public override async Task CreateAsync(ToDoList entity)
+        {
+
+            using (var context = new ProjeYonetimDbContext())
+            {
+                context.Set<ToDoList>().Add(entity);
+                await AddEmployeeToProjectAsync(entity.EmployeeId, entity.ProjectId);
                 await context.SaveChangesAsync();
             }
         }
