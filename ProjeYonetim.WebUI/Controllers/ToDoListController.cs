@@ -45,6 +45,7 @@ namespace ProjeYonetim.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 await _toDoListService.Create(toDo);
+                await _toDoListRepository.AddEmployeeToProjectAsync(toDo.EmployeeId, toDo.ProjectId);
                 return RedirectToAction(nameof(GetAll));
             }
             return View(toDo);
@@ -82,7 +83,8 @@ namespace ProjeYonetim.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _toDoListService.Delete(toDo);
+                //await _toDoListService.Delete(toDo);
+                await _toDoListRepository.Delete(toDo); //DeleteEmployeeToProjectAsync(toDo.EmployeeId, toDo.ProjectId);
                 return RedirectToAction(nameof(GetAll));
             }
             return View(toDo);

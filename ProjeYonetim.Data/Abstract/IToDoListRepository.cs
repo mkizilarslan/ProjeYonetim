@@ -11,6 +11,8 @@ namespace ProjeYonetim.Data.Abstract
         Task<List<Employee>> GetEmployee();
         Task<List<ToDoList>> GetToDoListProjectAndEmployees();
         Task<ToDoList> GetToDoListProjectAndEmployee(int id);
+        Task AddEmployeeToProjectAsync(int employeeId, int projectId);
+        Task DeleteEmployeeToProjectAsync(int employeeId, int projectId);
 
     }
 }
