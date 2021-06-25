@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ProjeYonetim.Entities.ToDoList>
+
+@{
+    ViewData["Title"] = "GetAll";
+}
+
+<h1 class="text-monospace  text-info text-center mt-2">Yapılacaklar</h1>
+<a class="btn btn-success float-right mb-2" asp-action="Create"><i class="fas fa-plus-square"> </i> Yapılacak Ekle</a>
+<table class="table table-bordered table-sm table-hover table-striped mt-1">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ToDoName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ToDoContent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Priority)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Project)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ToDoName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ToDoContent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Priority)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Project.ProjectName)
+                </td>
+                <td class="text-center">
+                    <a asp-action="Update" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a> |
+                    <a asp-action="GetById" asp-route-id="@item.Id"><i class="fas fa-info-circle"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

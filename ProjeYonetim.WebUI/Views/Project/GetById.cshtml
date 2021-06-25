@@ -1,0 +1,51 @@
+﻿@model ProjeYonetim.Entities.Project
+
+@{
+    ViewData["Title"] = "GetById";
+}
+
+<h1 class="text-monospace text-info text-center">Proje Detay</h1>
+<hr class="col-md-7 bg-danger" />
+<hr class="col-md-7 bg-warning" />
+
+<div class="row justify-content-center mx-auto col-md-5">
+    <div class="row table table-bordered p-2 border-info">
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ProjectName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ProjectName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ProjectDetail)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ProjectDetail)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.StartDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.StartDate)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.EndDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.EndDate)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+        </dl>
+    </div>
+</div>
+<div class="text-center justify-content-center mx-auto">
+    <a asp-action="Update" asp-route-id="@Model.Id">Düzenle</a> |
+    <a asp-action="GetAll">Geri dön</a>
+</div>
+

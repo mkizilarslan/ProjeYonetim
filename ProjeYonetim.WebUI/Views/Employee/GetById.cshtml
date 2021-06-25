@@ -1,0 +1,56 @@
+﻿@model ProjeYonetim.Entities.Employee
+
+@{
+    ViewData["Title"] = "Get";
+}
+
+<h1 class="text-monospace text-info text-center">Personel Detay</h1>
+<hr class="col-md-7 bg-danger" />
+<hr class="col-md-7 bg-warning" />
+
+<div class="row justify-content-center mx-auto col-md-5">
+    <div class="row table table-bordered p-2 border-info">
+        <dl class="row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.FullName)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.FullName)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Gender)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Gender)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.DateOfBirth)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.DateOfBirth)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Department)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Department)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Salary)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Salary)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.LastUpdateDate)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.LastUpdateDate)
+            </dd>
+        </dl>
+    </div>
+</div>
+<div class="text-center justify-content-center mx-auto">
+    <a asp-action="Update" asp-route-id="@Model.Id">Düzenle</a> |
+    <a asp-action="GetAll">Geri dön</a>
+</div>

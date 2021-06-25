@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ProjeYonetim.Entities.Project>
+
+@{
+    ViewData["Title"] = "GetAll";
+}
+
+<h1 class="text-monospace  text-info text-center mt-2">Projeler</h1>
+<a class="btn btn-success float-right mb-2" asp-action="Create"><i class="fas fa-plus-square"> </i> Proje Ekle</a>
+<table class="table table-bordered table-sm table-hover table-striped mt-1">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectDetail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectDetail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td class="text-center">
+                    <a asp-action="Update" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a> |
+                    <a asp-action="GetById" asp-route-id="@item.Id"><i class="fas fa-info-circle"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
