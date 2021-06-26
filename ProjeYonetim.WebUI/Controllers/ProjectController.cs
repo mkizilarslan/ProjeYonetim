@@ -20,6 +20,7 @@ namespace ProjeYonetim.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetById(int id)
         {
+            ViewData["NetIncome"] = _projectRepository.GetProjectNetIncomeAsync(id).Result;
             var project = await _projectRepository.GetProjectSalesAsync(id);
             return View(project);
         }

@@ -10,5 +10,6 @@ namespace ProjeYonetim.Data.Abstract
         Task<List<Sales>> GetSalesListAsync();
         Task<List<Project>> GetProjectSalesListAsync();
         Task<Project> GetProjectSalesAsync(int id);
+        Task<decimal> GetProjectNetIncomeAsync(int projectId);
     }
 }

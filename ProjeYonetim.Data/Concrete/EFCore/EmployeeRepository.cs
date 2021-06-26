@@ -2,6 +2,7 @@
 using ProjeYonetim.Core.DataAccess.EFCore;
 using ProjeYonetim.Data.Abstract;
 using ProjeYonetim.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,6 +27,6 @@ namespace ProjeYonetim.Data.Concrete.EFCore
             {
                 return await context.Employees.Where(x => x.IsActive == true).ToListAsync();
             }
-        }
+        }        
     }
 }

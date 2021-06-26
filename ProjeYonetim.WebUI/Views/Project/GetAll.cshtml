@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<ProjeYonetim.Entities.Project>
+@inject ProjeYonetim.Data.Abstract.IProjectRepository deneme
 
 @{
     ViewData["Title"] = "GetAll";
@@ -23,35 +24,41 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.EndDate)
-            </th>            
+            </th>
+            <th>
+                Net Gelir
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sales.SalesName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProjectName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProjectDetail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
-            </td>
-            <td class="text-center">
-                <a asp-action="Update" asp-route-id="@item.Id"><i class="btn btn-warning fas fa-edit"></i></a>
-                <a asp-action="GetById" asp-route-id="@item.Id"><i class="btn btn-info fas fa-info-circle"></i></a>
-                <a asp-action="Delete" asp-route-id="@item.Id"><i class="btn btn-danger fas fa-trash-alt"></i></a>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sales.SalesName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectDetail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @deneme.GetProjectNetIncomeAsync(item.Id).Result.ToString() ₺
+                </td>
+                <td class="text-center">
+                    <a asp-action="Update" asp-route-id="@item.Id"><i class="btn btn-warning fas fa-edit"></i></a>
+                    <a asp-action="GetById" asp-route-id="@item.Id"><i class="btn btn-info fas fa-info-circle"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.Id"><i class="btn btn-danger fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>

@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "GetById";
+    var netIncome = ViewData["NetIncome"];
 }
 
 <h1 class="text-monospace text-info text-center">Proje Detay</h1>
@@ -40,6 +41,12 @@
             </dt>
             <dd class="col-sm-8">
                 @Html.DisplayFor(model => model.EndDate)
+            </dd>
+            <dt class="col-sm-4">
+                Net Gelir
+            </dt>
+            <dd class="col-sm-8">
+                @netIncome.ToString() ₺
             </dd>
         </dl>
     </div>
