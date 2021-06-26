@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ProjeYonetim.Core\ProjeYonetim.Core.csproj" />
     <ProjectReference Include="..\ProjeYonetim.Data\ProjeYonetim.Data.csproj" />
     <ProjectReference Include="..\ProjeYonetim.Entities\ProjeYonetim.Entities.csproj" />
   </ItemGroup>

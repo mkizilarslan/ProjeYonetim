@@ -1,0 +1,57 @@
+﻿@model ProjeYonetim.Entities.Sales
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1 class="text-monospace text-info text-center">Satış Sil</h1>
+<hr class="col-md-7 bg-danger" />
+<hr class="col-md-7 bg-warning" />
+
+<div class="row justify-content-center mx-auto col-md-5">
+    <div class="row table table-bordered p-2 border-danger">
+        <dl class="row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.CustomerName)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.CustomerName)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.SalesName)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.SalesName)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Employee)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Employee.FullName)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.SalesDate)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.SalesDate)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+        </dl>
+    </div>
+</div>
+<form asp-action="Delete" class="text-center justify-content-center mx-auto">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="CustomerName" />
+    <input type="hidden" asp-for="SalesName" />
+    <input type="hidden" asp-for="EmployeeId" />
+    <input type="hidden" asp-for="SalesDate" />
+    <input type="hidden" asp-for="Price" />
+    <input type="submit" value="Delete" class="btn btn-danger" /> |
+    <a asp-action="GetAll">Geri dön</a>
+</form>
+

@@ -1,0 +1,54 @@
+﻿@model ProjeYonetim.Entities.Project
+
+@{
+    ViewData["Title"] = "Update";
+    var projectSales = ViewData["SalesId"] as SelectList;
+}
+
+<h1 class="text-center text-monospace text-info mt-5">Proje Güncelle</h1>
+<hr class="col-md-7 bg-danger" />
+<hr class="col-md-7 bg-warning" />
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form asp-action="Update">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="SalesId" class="control-label"></label>
+                <select asp-for="SalesId" class="form-control shadow-lg" asp-items="projectSales"></select>
+                <span asp-validation-for="SalesId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectName" class="control-label"></label>
+                <input asp-for="ProjectName" class="form-control shadow-lg" />
+                <span asp-validation-for="ProjectName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectDetail" class="control-label"></label>
+                <input asp-for="ProjectDetail" class="form-control shadow-lg" />
+                <span asp-validation-for="ProjectDetail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input asp-for="StartDate" class="form-control shadow-lg" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label"></label>
+                <input asp-for="EndDate" class="form-control shadow-lg" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>            
+            <div class="form-group">
+                <input type="submit" value="Güncelle" class="btn btn-primary btn-block " />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="justify-content-center text-center">
+    <a asp-action="GetAll">Geri dön</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
