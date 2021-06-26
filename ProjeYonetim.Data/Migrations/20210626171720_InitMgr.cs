@@ -17,8 +17,9 @@ namespace ProjeYonetim.Data.Migrations
                     Gender = table.Column<int>(type: "int", nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "date", nullable: false),
                     Department = table.Column<int>(type: "int", nullable: false),
-                    Salary = table.Column<decimal>(type: "decimal(6,2)", nullable: false),
-                    LastUpdateDate = table.Column<DateTime>(type: "date", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
+                    Salary = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -58,8 +59,7 @@ namespace ProjeYonetim.Data.Migrations
                     ProjectName = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
                     ProjectDetail = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     StartDate = table.Column<DateTime>(type: "date", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "date", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    EndDate = table.Column<DateTime>(type: "date", nullable: false)
                 },
                 constraints: table =>
                 {

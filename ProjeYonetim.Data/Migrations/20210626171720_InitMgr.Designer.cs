@@ -10,8 +10,8 @@ using ProjeYonetim.Data;
 namespace ProjeYonetim.Data.Migrations
 {
     [DbContext(typeof(ProjeYonetimDbContext))]
-    [Migration("20210626133208_InitMgr5")]
-    partial class InitMgr5
+    [Migration("20210626171720_InitMgr")]
+    partial class InitMgr
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

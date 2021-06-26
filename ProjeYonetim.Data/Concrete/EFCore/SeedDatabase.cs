@@ -12,33 +12,33 @@ namespace ProjeYonetim.Data.Concrete.EFCore
 
         private static readonly Employee[] Employees =
         {
-            new Employee() { FullName = "Mücahit Kızılarslan", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 1, 1), Department = Department.Yönetim, Salary = 12000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Eyüp Orhun Fındık", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 2, 2), Department = Department.Yönetim, Salary = 10000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Nergiz Gilim", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 3, 3), Department = Department.Muhasebe, Salary = 3000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Kubra Göçmen", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 4, 4), Department = Department.Muhasebe, Salary = 4000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Berhudan Garip", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 5, 5), Department = Department.Muhasebe, Salary = 2000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Nihan Gazitepe", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 6, 6), Department = Department.Satış, Salary = 7000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Menekşe Geben", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 7, 7), Department = Department.Satış, Salary = 3000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Şeniz Geboloğlu", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 8, 8), Department = Department.Satış, Salary = 3000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Zeynep Senahan Geçioğlu", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 9, 9), Department = Department.Satış, Salary = 6000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Hayri Anıl Geçkin", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 1, 10), Department = Department.Satış, Salary = 5000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Muazzez Ece Gemalmaz", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 2, 11), Department = Department.Satış, Salary = 4000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Kerem Cahit Gençoğlu", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 3, 12), Department = Department.Yazılım, Salary = 3000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Sadık Can Gezmiş", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 4, 13), Department = Department.Yazılım, Salary = 6000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Resmiye Elif Gırgın", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 5, 14), Department = Department.Yazılım, Salary = 5000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "İrfan Anıl Fındıkçı", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 6, 15), Department = Department.Yazılım, Salary = 4000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Mehmet Gökalp Ginoviç", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 7, 16), Department = Department.Yazılım, Salary = 5000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Mehmetali Girgin", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 8, 17), Department = Department.Yazılım, Salary = 5000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Abdullah Halit Golba", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 9, 18), Department = Department.Yazılım, Salary = 6000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Tilbe Göç", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 1, 19), Department = Department.Yazılım, Salary = 4000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Ertuğ Furuncuoğlu", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 2, 21), Department = Department.Yazılım, Salary = 5000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Kubilay Gödek", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 3, 22), Department = Department.Yazılım, Salary = 4000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Busem Gökçeaslan", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 4, 23), Department = Department.Yazılım, Salary = 4000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Banuhan Gökçek", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 5, 24), Department = Department.Yazılım, Salary = 6000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Örgün Gökhan", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 6, 25), Department = Department.Yazılım, Salary = 5000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Melike Göksoy", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 7, 26), Department = Department.Satış, Salary = 3000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Yeşim Gölmes", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 8, 27), Department = Department.Satış, Salary = 7000, LastUpdateDate = DateTime.Now.Date },
-            new Employee() { FullName = "Nilüfer Gönay", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 9, 28), Department = Department.Satış, Salary = 7000, LastUpdateDate = DateTime.Now.Date }
+            new Employee() {IsActive=true, FullName = "Mücahit Kızılarslan", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 1, 1), Department = Department.Yönetim, Salary = 12000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "Eyüp Orhun Fındık", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 2, 2), Department = Department.Yönetim, Salary = 10000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "Nergiz Gilim", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 3, 3), Department = Department.Muhasebe, Salary = 3000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "Kubra Göçmen", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 4, 4), Department = Department.Muhasebe, Salary = 4000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "Berhudan Garip", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 5, 5), Department = Department.Muhasebe, Salary = 2000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "Nihan Gazitepe", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 6, 6), Department = Department.Satış, Salary = 7000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "Menekşe Geben", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 7, 7), Department = Department.Satış, Salary = 3000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "Şeniz Geboloğlu", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 8, 8), Department = Department.Satış, Salary = 3000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "Zeynep Senahan Geçioğlu", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 9, 9), Department = Department.Satış, Salary = 6000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "Hayri Anıl Geçkin", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 1, 10), Department = Department.Satış, Salary = 5000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "Muazzez Ece Gemalmaz", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 2, 11), Department = Department.Satış, Salary = 4000, LastUpdateDate = DateTime.Now.Date},
+            new Employee() {IsActive=true, FullName = "Kerem Cahit Gençoğlu", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 3, 12), Department = Department.Yazılım, Salary = 3000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "Sadık Can Gezmiş", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 4, 13), Department = Department.Yazılım, Salary = 6000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "Resmiye Elif Gırgın", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 5, 14), Department = Department.Yazılım, Salary = 5000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "İrfan Anıl Fındıkçı", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 6, 15), Department = Department.Yazılım, Salary = 4000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "Mehmet Gökalp Ginoviç", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 7, 16), Department = Department.Yazılım, Salary = 5000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "Mehmetali Girgin", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 8, 17), Department = Department.Yazılım, Salary = 5000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "Abdullah Halit Golba", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 9, 18), Department = Department.Yazılım, Salary = 6000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "Tilbe Göç", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 1, 19), Department = Department.Yazılım, Salary = 4000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "Ertuğ Furuncuoğlu", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 2, 21), Department = Department.Yazılım, Salary = 5000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "Kubilay Gödek", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 3, 22), Department = Department.Yazılım, Salary = 4000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "Busem Gökçeaslan", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 4, 23), Department = Department.Yazılım, Salary = 4000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "Banuhan Gökçek", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 5, 24), Department = Department.Yazılım, Salary = 6000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "Örgün Gökhan", Gender = Gender.Erkek, DateOfBirth = new DateTime(2020, 6, 25), Department = Department.Yazılım, Salary = 5000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "Melike Göksoy", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 7, 26), Department = Department.Satış, Salary = 3000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "Yeşim Gölmes", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 8, 27), Department = Department.Satış, Salary = 7000, LastUpdateDate = DateTime.Now.Date },
+            new Employee() {IsActive=true, FullName = "Nilüfer Gönay", Gender = Gender.Kadın, DateOfBirth = new DateTime(2020, 9, 28), Department = Department.Satış, Salary = 7000, LastUpdateDate = DateTime.Now.Date }
         };
 
         private static readonly Sales[] Sales =
@@ -263,27 +263,24 @@ namespace ProjeYonetim.Data.Concrete.EFCore
         public static void Seed()
         {
             var context = new ProjeYonetimDbContext();
-            if (context.Database.GetPendingMigrations().Any())
-            {
-                if (!context.Database.EnsureCreated())
-                {
-                    if (!context.Employees.Any() && !context.Sales.Any() && !context.Projects.Any() && !context.ToDoLists.Any() && !context.Expenses.Any() && !context.EmployeeProjects.Any())
-                    {
-                        context.Employees.AddRangeAsync(Employees);
-                        context.SaveChangesAsync();
-                        context.Sales.AddRangeAsync(Sales);
-                        context.SaveChangesAsync();
-                        context.Projects.AddRangeAsync(Projects);
-                        context.SaveChangesAsync();
-                        context.EmployeeProjects.AddRangeAsync(EmployeeProjects);
-                        context.SaveChangesAsync();
-                        context.ToDoLists.AddRangeAsync(ToDoLists);
-                        context.SaveChangesAsync();
-                        context.Expenses.AddRangeAsync(Expenses);
-                        context.SaveChangesAsync();
-                    }
-                }
 
+            if (!context.Database.EnsureCreated())
+            {
+                if (!context.Employees.Any() && !context.Sales.Any() && !context.Projects.Any() && !context.ToDoLists.Any() && !context.Expenses.Any() && !context.EmployeeProjects.Any())
+                {
+                    context.Employees.AddRange(Employees);
+                    context.SaveChanges();
+                    context.Sales.AddRange(Sales);
+                    context.SaveChanges();
+                    context.Projects.AddRange(Projects);
+                    context.SaveChanges();
+                    context.EmployeeProjects.AddRange(EmployeeProjects);
+                    context.SaveChanges();
+                    context.ToDoLists.AddRange(ToDoLists);
+                    context.SaveChanges();
+                    context.Expenses.AddRangeAsync(Expenses);
+                    context.SaveChanges();
+                }
             }
         }
     }
