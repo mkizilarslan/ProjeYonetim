@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProjeYonetim.Business.Abstract;
 using ProjeYonetim.Entities;
 using System.Threading.Tasks;
 
 namespace ProjeYonetim.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class EmployeeController : Controller
     {
         private readonly IEmployeeService _employeeService;
@@ -23,7 +25,7 @@ namespace ProjeYonetim.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            
+
             var employeeList = await _employeeService.EmployeeGetAllAsync();
             return View(employeeList);
         }

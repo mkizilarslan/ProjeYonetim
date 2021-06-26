@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ProjeYonetim.Business.Abstract;
 using ProjeYonetim.Data.Abstract;
@@ -18,6 +19,7 @@ namespace ProjeYonetim.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,Software,SoftwareTeamLeader")]
         public async Task<IActionResult> GetById(int id)
         {
             var toDo = await _toDoListRepository.GetToDoProAndEmpAsync(id);
@@ -25,6 +27,7 @@ namespace ProjeYonetim.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,Software,SoftwareTeamLeader")]
         public async Task<IActionResult> GetAll()
         {
             var toDoList = await _toDoListRepository.GetToDoIncludeProAndEmpListAsync();
@@ -32,6 +35,7 @@ namespace ProjeYonetim.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,SoftwareTeamLeader")]
         public IActionResult Create()
         {
             ViewData["EmployeeId"] = new SelectList(_toDoListRepository.GetEmployeeAsync().Result, "Id", "FullName");
@@ -40,6 +44,7 @@ namespace ProjeYonetim.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,SoftwareTeamLeader")]
         public async Task<IActionResult> Create(ToDoList toDo)
         {
             if (ModelState.IsValid)
@@ -52,6 +57,7 @@ namespace ProjeYonetim.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,SoftwareTeamLeader")]
         public IActionResult Update(int id)
         {
             var toDo = _toDoListService.ToDoListGetByIdAsync(id).Result;
@@ -61,6 +67,7 @@ namespace ProjeYonetim.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,SoftwareTeamLeader")]
         public async Task<IActionResult> Update(ToDoList toDo)
         {
             if (ModelState.IsValid)
@@ -72,6 +79,7 @@ namespace ProjeYonetim.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,SoftwareTeamLeader")]
         public async Task<IActionResult> Delete(int id)
         {
             var toDo = await _toDoListRepository.GetToDoProAndEmpAsync(id);
@@ -79,6 +87,7 @@ namespace ProjeYonetim.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,SoftwareTeamLeader")]
         public async Task<IActionResult> Delete(ToDoList toDo)
         {
             if (ModelState.IsValid)

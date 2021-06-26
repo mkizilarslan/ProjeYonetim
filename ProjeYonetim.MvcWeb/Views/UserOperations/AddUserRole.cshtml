@@ -1,0 +1,37 @@
+﻿@model UserManager<IdentityUser>
+
+@{
+    ViewData["Title"] = "AddUserRole";
+    var user = ViewData["user"];
+    var roles = ViewData["roles"] as SelectList;
+}
+
+<h1 class="text-center text-monospace text-info mt-5">Rol Ata</h1>
+<hr class="col-md-7 bg-danger" />
+<hr class="col-md-7 bg-warning" />
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form asp-action="AddUserRole">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">UserName</label>
+                <input disabled asp-for="@user" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Rol</label>
+                <select name="roleName" class="form-control shadow-lg" asp-items="@roles"><option disabled selected>Rol Seçiniz...</option></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="justify-content-center text-center">
+    <a asp-action="GetAll">Geri dön</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

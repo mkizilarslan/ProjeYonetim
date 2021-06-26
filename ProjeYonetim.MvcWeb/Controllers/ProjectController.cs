@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ProjeYonetim.Business.Abstract;
 using ProjeYonetim.Data.Abstract;
@@ -18,6 +19,7 @@ namespace ProjeYonetim.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,Software,SoftwareTeamLeader")]
         public async Task<IActionResult> GetById(int id)
         {
             ViewData["NetIncome"] = _projectRepository.GetProjectNetIncomeAsync(id).Result;
@@ -26,6 +28,7 @@ namespace ProjeYonetim.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,Software,SoftwareTeamLeader")]
         public async Task<IActionResult> GetAll()
         {
             var projectList = await _projectRepository.GetProjectSalesListAsync();
@@ -33,6 +36,7 @@ namespace ProjeYonetim.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,SoftwareTeamLeader")]
         public IActionResult Create()
         {
             ViewData["SalesId"] = new SelectList(_projectRepository.GetSalesListAsync().Result, "Id", "SalesName");
@@ -40,6 +44,7 @@ namespace ProjeYonetim.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,SoftwareTeamLeader")]
         public async Task<IActionResult> Create(Project project)
         {
             if (ModelState.IsValid)
@@ -51,6 +56,7 @@ namespace ProjeYonetim.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,SoftwareTeamLeader")]
         public IActionResult Update(int id)
         {
             var project = _projectService.ProjectGetByIdAsync(id).Result;
@@ -59,6 +65,7 @@ namespace ProjeYonetim.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,SoftwareTeamLeader")]
         public async Task<IActionResult> Update(Project project)
         {
             if (ModelState.IsValid)
@@ -70,6 +77,7 @@ namespace ProjeYonetim.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,SoftwareTeamLeader")]
         public async Task<IActionResult> Delete(int id)
         {
             var project = await _projectRepository.GetProjectSalesAsync(id);
@@ -77,6 +85,7 @@ namespace ProjeYonetim.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,SoftwareTeamLeader")]
         public async Task<IActionResult> Delete(Project project)
         {
             if (ModelState.IsValid)

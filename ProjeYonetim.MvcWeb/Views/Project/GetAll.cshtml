@@ -6,7 +6,7 @@
 }
 
 <h1 class="text-monospace  text-info text-center mt-2">Projeler</h1>
-<a class="btn btn-success float-right mb-2" asp-action="Create"><i class="fas fa-plus-square"> </i> Proje Ekle</a>
+<a class="btn btn-success float-right mb-2 col-md-2" asp-action="Create"><i class="fas fa-plus-square"> </i> Proje Ekle</a>
 <table class="table table-bordered table-sm table-hover table-striped mt-1">
     <thead>
         <tr>
@@ -53,10 +53,10 @@
                 <td>
                     @deneme.GetProjectNetIncomeAsync(item.Id).Result.ToString() ₺
                 </td>
-                <td class="text-center">
-                    <a asp-action="Update" asp-route-id="@item.Id"><i class="btn btn-warning fas fa-edit"></i></a>
-                    <a asp-action="GetById" asp-route-id="@item.Id"><i class="btn btn-info fas fa-info-circle"></i></a>
-                    <a asp-action="Delete" asp-route-id="@item.Id"><i class="btn btn-danger fas fa-trash-alt"></i></a>
+                <td class="text-center col-md-2">
+                    <a asp-action="Update" asp-route-id="@item.Id"><i class="btn btn-warning btn-sm fas fa-edit"></i></a>
+                    <a asp-action="GetById" asp-route-id="@item.Id"><i class="btn btn-info btn-sm fas fa-info-circle"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.Id"><i class="btn btn-danger btn-sm fas fa-trash-alt"></i></a>
                 </td>
             </tr>
         }

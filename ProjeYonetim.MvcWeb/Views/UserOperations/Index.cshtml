@@ -1,0 +1,76 @@
+﻿@model IEnumerable<IdentityUser>
+
+@{
+    ViewData["Title"] = "Index";
+    var userRoles = ViewData["userRoles"] as List<IdentityUserRole<string>>;
+    var roles = ViewData["roles"] as List<IdentityRole>;
+}
+
+<h1 class="text-monospace  text-info text-center mt-2">Kullanıcılar</h1>
+<a class="btn btn-success float-right mb-2 col-md-2" asp-action="Create"><i class="fas fa-plus-square"> </i> Proje Ekle</a>
+<table class="table table-bordered table-sm table-hover table-striped mt-1">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailConfirmed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                Rol
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @if (item.EmailConfirmed == true)
+                    {
+                        <a>Onaylandı</a>
+                    }
+                    else
+                    {
+                        <a>Onaylanmadı</a>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @foreach (var ur in userRoles)
+                    {
+                        @if (ur.UserId == item.Id)
+                        {
+                            @foreach (var ro in roles)
+                            {
+                                @if (ro.Id == ur.RoleId)
+                                {
+                                    @ro.Name;
+                                }
+                            }
+                        }
+                    }
+                </td>
+                <td class="col-md-2">
+                    <a asp-action="AddUserRole" asp-route-id="@item.Id"><i class="btn btn-warning btn-block fas fa-edit btn-sm">Rol Ata</i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ProjeYonetim.Business.Abstract;
 using ProjeYonetim.Data.Abstract;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjeYonetim.Web.Controllers
 {
+    [Authorize(Roles = "Admin,Accounting")]
     public class ExpenseController : Controller
     {
         private readonly IExpenseService _expenseService;

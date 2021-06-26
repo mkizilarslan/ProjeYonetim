@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using ProjeYonetim.Entities;
 
 namespace ProjeYonetim.MvcWeb.Data
 {
@@ -24,6 +22,12 @@ namespace ProjeYonetim.MvcWeb.Data
             modelBuilder.Entity<IdentityUserClaim<string>>(m => m.ToTable("UserClaims"));
             modelBuilder.Entity<IdentityUserLogin<string>>(m => m.ToTable("UserLogins"));
             modelBuilder.Entity<IdentityUserToken<string>>(m => m.ToTable("UserTokens"));
+
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole() { Name = "Admin", NormalizedName = "ADMIN" });
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole() { Name = "Sales", NormalizedName = "SALES" });
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole() { Name = "Accounting", NormalizedName = "ACCOUNTING" });
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole() { Name = "SoftwareTeamLeader", NormalizedName = "SOFTWARETEAMLEADER" });
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole() { Name = "Software", NormalizedName = "SOFTWARE".ToUpper() });
         }
     }
 }
