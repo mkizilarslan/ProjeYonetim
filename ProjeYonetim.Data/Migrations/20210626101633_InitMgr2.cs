@@ -2,23 +2,23 @@
 
 namespace ProjeYonetim.Data.Migrations
 {
-    public partial class ModelUpdate : Migration
+    public partial class InitMgr2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "ProfileImage",
-                table: "Employees");
+                name: "Price",
+                table: "Projects");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "ProfileImage",
-                table: "Employees",
-                type: "nvarchar(max)",
+            migrationBuilder.AddColumn<decimal>(
+                name: "Price",
+                table: "Projects",
+                type: "decimal(18,2)",
                 nullable: false,
-                defaultValue: "");
+                defaultValue: 0m);
         }
     }
 }

@@ -18,13 +18,12 @@ namespace ProjeYonetim.Entities
 
         [Required]
         [MaxLength(16)]
-        [DisplayName("Proje Adı")]
-        public string ProjectName { get; set; }
+        [DisplayName("Satış Adı")]
+        public string SalesName { get; set; }
 
-        [Required]
         [ForeignKey(nameof(Employee))]
-        [DisplayName("Satış Çalışanı")]
-        public int EmployeeId { get; set; }
+        public int? EmployeeId { get; set; }
+        [DisplayName("Satış Personeli")]
         public Employee Employee { get; set; }
 
         [Required]
@@ -38,5 +37,7 @@ namespace ProjeYonetim.Entities
         [Column(TypeName = "decimal(18,2)")]
         [DisplayName("Fiyat")]
         public decimal Price { get; set; }
+
+        public IList<Project> Projects { get; set; }
     }
 }

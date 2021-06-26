@@ -22,8 +22,7 @@ namespace ProjeYonetim.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<EmployeeProject>()
-                .HasKey(x => new { x.EmployeeId, x.ProjectId });
+
 
             modelBuilder.Entity<Employee>()
                 .Property(x => x.LastUpdateDate)

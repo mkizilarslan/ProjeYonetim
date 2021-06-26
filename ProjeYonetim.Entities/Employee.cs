@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjeYonetim.Entities
 {
@@ -36,7 +33,7 @@ namespace ProjeYonetim.Entities
 
         [Required]
         [DataType(DataType.Currency)]
-        [Column(TypeName = "decimal(6,2)")]
+        [Column(TypeName = "decimal(8,2)")]
         [DisplayName("Maaş")]
         public decimal Salary { get; set; }
 
@@ -46,9 +43,11 @@ namespace ProjeYonetim.Entities
         [DisplayName("Güncelleme Tarihi")]
         public DateTime LastUpdateDate { get; set; }
 
+        public bool IsActive { get; set; }
 
-        public ICollection<EmployeeProject> EmployeeProjects { get; set; }
-        public List<Sales> Sales { get; set; }
-        public List<ToDoList> ToDoLists { get; set; }
+
+        public IList<EmployeeProject> EmployeeProjects { get; set; }
+        public IList<Sales> Sales { get; set; }
+        public IList<ToDoList> ToDoLists { get; set; }
     }
 }

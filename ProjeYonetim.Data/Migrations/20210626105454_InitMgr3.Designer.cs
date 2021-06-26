@@ -10,8 +10,8 @@ using ProjeYonetim.Data;
 namespace ProjeYonetim.Data.Migrations
 {
     [DbContext(typeof(ProjeYonetimDbContext))]
-    [Migration("20210623182955_ModelUpdate")]
-    partial class ModelUpdate
+    [Migration("20210626105454_InitMgr3")]
+    partial class InitMgr3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,13 +42,16 @@ namespace ProjeYonetim.Data.Migrations
                     b.Property<int>("Gender")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("LastUpdateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("date")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<decimal>("Salary")
-                        .HasColumnType("decimal(6,2)");
+                        .HasColumnType("decimal(8,2)");
 
                     b.HasKey("Id");
 
@@ -57,13 +60,20 @@ namespace ProjeYonetim.Data.Migrations
 
             modelBuilder.Entity("ProjeYonetim.Entities.EmployeeProject", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
-                    b.HasKey("EmployeeId", "ProjectId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
 
                     b.HasIndex("ProjectId");
 
@@ -105,9 +115,6 @@ namespace ProjeYonetim.Data.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("date");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<string>("ProjectDetail")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
@@ -117,10 +124,15 @@ namespace ProjeYonetim.Data.Migrations
                         .HasMaxLength(16)
                         .HasColumnType("nvarchar(16)");
 
+                    b.Property<int>("SalesId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("date");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SalesId");
 
                     b.ToTable("Projects");
                 });
@@ -137,28 +149,23 @@ namespace ProjeYonetim.Data.Migrations
                         .HasMaxLength(16)
                         .HasColumnType("nvarchar(16)");
 
-                    b.Property<int>("EmployeeId")
+                    b.Property<int?>("EmployeeId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("ProjectId")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("SalesDate")
+                        .HasColumnType("date");
 
-                    b.Property<string>("ProjectName")
+                    b.Property<string>("SalesName")
                         .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("nvarchar(16)");
 
-                    b.Property<DateTime>("SalesDate")
-                        .HasColumnType("date");
-
                     b.HasKey("Id");
 
                     b.HasIndex("EmployeeId");
-
-                    b.HasIndex("ProjectId");
 
                     b.ToTable("Sales");
                 });
@@ -228,17 +235,22 @@ namespace ProjeYonetim.Data.Migrations
                     b.Navigation("Project");
                 });
 
+            modelBuilder.Entity("ProjeYonetim.Entities.Project", b =>
+                {
+                    b.HasOne("ProjeYonetim.Entities.Sales", "Sales")
+                        .WithMany("Projects")
+                        .HasForeignKey("SalesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sales");
+                });
+
             modelBuilder.Entity("ProjeYonetim.Entities.Sales", b =>
                 {
                     b.HasOne("ProjeYonetim.Entities.Employee", "Employee")
                         .WithMany("Sales")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProjeYonetim.Entities.Project", null)
-                        .WithMany("Sales")
-                        .HasForeignKey("ProjectId");
+                        .HasForeignKey("EmployeeId");
 
                     b.Navigation("Employee");
                 });
@@ -277,9 +289,12 @@ namespace ProjeYonetim.Data.Migrations
 
                     b.Navigation("Expenses");
 
-                    b.Navigation("Sales");
-
                     b.Navigation("ToDoLists");
+                });
+
+            modelBuilder.Entity("ProjeYonetim.Entities.Sales", b =>
+                {
+                    b.Navigation("Projects");
                 });
 #pragma warning restore 612, 618
         }

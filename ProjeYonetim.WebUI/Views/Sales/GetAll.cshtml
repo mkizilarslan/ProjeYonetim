@@ -13,7 +13,7 @@
                 @Html.DisplayNameFor(model => model.CustomerName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProjectName)
+                @Html.DisplayNameFor(model => model.SalesName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Employee)
@@ -35,7 +35,7 @@
                     @Html.DisplayFor(modelItem => item.CustomerName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ProjectName)
+                    @Html.DisplayFor(modelItem => item.SalesName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Employee.FullName)
@@ -47,9 +47,9 @@
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
                 <td class="text-center">
-                    <a asp-action="Update" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a> |
-                    <a asp-action="GetById" asp-route-id="@item.Id"><i class="fas fa-info-circle"></i></a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i></a>
+                    <a asp-action="Update" asp-route-id="@item.Id"><i class="btn btn-warning fas fa-edit"></i></a>
+                    <a asp-action="GetById" asp-route-id="@item.Id"><i class="btn btn-info fas fa-info-circle"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.Id"><i class="btn btn-danger fas fa-trash-alt"></i></a>
                 </td>
             </tr>
         }

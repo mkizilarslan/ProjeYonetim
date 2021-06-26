@@ -23,7 +23,7 @@ namespace ProjeYonetim.Data.Concrete.EFCore
         {
             using (var context = new ProjeYonetimDbContext())
             {
-                return await context.Employees.Where(x => x.Department == Entities.Constant.Department.Yazılım).ToListAsync();
+                return await context.Employees.Where(x => x.Department == Entities.Constant.Department.Yazılım && x.IsActive == true).ToListAsync();
             }
         }
 

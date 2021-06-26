@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ProjeYonetim.Business.Abstract;
+using ProjeYonetim.Data.Abstract;
 using ProjeYonetim.Entities;
 using System.Threading.Tasks;
 
@@ -8,28 +10,31 @@ namespace ProjeYonetim.WebUI.Controllers
     public class ProjectController : Controller
     {
         private readonly IProjectService _projectService;
-        public ProjectController(IProjectService projectService)
+        private readonly IProjectRepository _projectRepository;
+        public ProjectController(IProjectService projectService, IProjectRepository projectRepository)
         {
             _projectService = projectService;
+            _projectRepository = projectRepository;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetById(int id)
         {
-            var project = await _projectService.ProjectGetByIdAsync(id);
+            var project = await _projectRepository.GetProjectSalesAsync(id);
             return View(project);
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var projectList = await _projectService.ProjectGetAllAsync();
+            var projectList = await _projectRepository.GetProjectSalesListAsync();
             return View(projectList);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
+            ViewData["SalesId"] = new SelectList(_projectRepository.GetSalesListAsync().Result, "Id", "SalesName");
             return View();
         }
 
@@ -48,6 +53,7 @@ namespace ProjeYonetim.WebUI.Controllers
         public IActionResult Update(int id)
         {
             var project = _projectService.ProjectGetByIdAsync(id).Result;
+            ViewData["SalesId"] = new SelectList(_projectRepository.GetSalesListAsync().Result, "Id", "SalesName");
             return View(project);
         }
 
@@ -63,9 +69,9 @@ namespace ProjeYonetim.WebUI.Controllers
         }
 
         [HttpGet]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var project = _projectService.ProjectGetByIdAsync(id).Result;
+            var project = await _projectRepository.GetProjectSalesAsync(id);
             return View(project);
         }
 

@@ -15,6 +15,7 @@ namespace ProjeYonetim.Business.Concrete
         }
         public async Task EmployeeCreateAsync(Employee entity)
         {
+            entity.IsActive = true;
             await _employeeRepository.CreateAsync(entity);
         }
         public async Task EmployeeDeleteAsync(Employee entity)
@@ -31,6 +32,7 @@ namespace ProjeYonetim.Business.Concrete
         }
         public async Task EmployeeUpdateAsync(Employee entity)
         {
+            entity.IsActive = true;
             await _employeeRepository.UpdateAsync(entity);
         }
     }

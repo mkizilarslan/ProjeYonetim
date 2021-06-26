@@ -1,11 +1,7 @@
 ﻿using ProjeYonetim.Entities.Constant;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProjeYonetim.Entities
 {
@@ -30,13 +26,13 @@ namespace ProjeYonetim.Entities
 
 
         [ForeignKey(nameof(Employee))]
-        [DisplayName("Personel")]
         public int EmployeeId { get; set; }
+        [DisplayName("Personel")]
         public Employee Employee { get; set; }
 
         [ForeignKey(nameof(Project))]
-        [DisplayName("Proje")]
         public int ProjectId { get; set; }
+        [DisplayName("Proje")]
         public Project Project { get; set; }
     }
 }

@@ -14,6 +14,11 @@ namespace ProjeYonetim.Entities
         [Key]
         public int Id { get; set; }
 
+        [ForeignKey(nameof(Sales))]
+        public int SalesId { get; set; }
+        [DisplayName("Satış Adı")]
+        public Sales Sales { get; set; }
+
         [Required]
         [MaxLength(16)]
         [DisplayName("Proje Adı")]
@@ -35,16 +40,9 @@ namespace ProjeYonetim.Entities
         [DisplayName("Bitiş Tarihi")]
         public DateTime EndDate { get; set; }
 
-        [Required]
-        [DataType(DataType.Currency)]
-        [Column(TypeName = "decimal(18,2)")]
-        [DisplayName("Satış Fiyatı")]
-        public decimal Price { get; set; }
-
-
-
-        public ICollection<EmployeeProject> EmployeeProjects { get; set; }
-        public List<Expense> Expenses { get; set; }
-        public List<ToDoList> ToDoLists { get; set; }
+  
+        public IList<EmployeeProject> EmployeeProjects { get; set; }
+        public IList<Expense> Expenses { get; set; }
+        public IList<ToDoList> ToDoLists { get; set; }
     }
 }

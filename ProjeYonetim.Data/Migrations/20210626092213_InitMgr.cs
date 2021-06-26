@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjeYonetim.Data.Migrations
 {
-    public partial class InitMigration : Migration
+    public partial class InitMgr : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,7 +18,6 @@ namespace ProjeYonetim.Data.Migrations
                     DateOfBirth = table.Column<DateTime>(type: "date", nullable: false),
                     Department = table.Column<int>(type: "int", nullable: false),
                     Salary = table.Column<decimal>(type: "decimal(6,2)", nullable: false),
-                    ProfileImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastUpdateDate = table.Column<DateTime>(type: "date", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
@@ -27,11 +26,35 @@ namespace ProjeYonetim.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Sales",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CustomerName = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
+                    SalesName = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
+                    EmployeeId = table.Column<int>(type: "int", nullable: true),
+                    SalesDate = table.Column<DateTime>(type: "date", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sales", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Sales_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Projects",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    SalesId = table.Column<int>(type: "int", nullable: false),
                     ProjectName = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
                     ProjectDetail = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     StartDate = table.Column<DateTime>(type: "date", nullable: false),
@@ -41,18 +64,26 @@ namespace ProjeYonetim.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Projects", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Projects_Sales_SalesId",
+                        column: x => x.SalesId,
+                        principalTable: "Sales",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "EmployeeProjects",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
                     ProjectId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmployeeProjects", x => new { x.EmployeeId, x.ProjectId });
+                    table.PrimaryKey("PK_EmployeeProjects", x => x.Id);
                     table.ForeignKey(
                         name: "FK_EmployeeProjects_Employees_EmployeeId",
                         column: x => x.EmployeeId,
@@ -89,36 +120,6 @@ namespace ProjeYonetim.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sales",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerName = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
-                    ProjectName = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
-                    EmployeeId = table.Column<int>(type: "int", nullable: false),
-                    SalesDate = table.Column<DateTime>(type: "date", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    ProjectId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Sales", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Sales_Employees_EmployeeId",
-                        column: x => x.EmployeeId,
-                        principalTable: "Employees",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Sales_Projects_ProjectId",
-                        column: x => x.ProjectId,
-                        principalTable: "Projects",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ToDoLists",
                 columns: table => new
                 {
@@ -148,6 +149,11 @@ namespace ProjeYonetim.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_EmployeeProjects_EmployeeId",
+                table: "EmployeeProjects",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_EmployeeProjects_ProjectId",
                 table: "EmployeeProjects",
                 column: "ProjectId");
@@ -158,14 +164,14 @@ namespace ProjeYonetim.Data.Migrations
                 column: "ProjectId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Projects_SalesId",
+                table: "Projects",
+                column: "SalesId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Sales_EmployeeId",
                 table: "Sales",
                 column: "EmployeeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Sales_ProjectId",
-                table: "Sales",
-                column: "ProjectId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ToDoLists_EmployeeId",
@@ -187,16 +193,16 @@ namespace ProjeYonetim.Data.Migrations
                 name: "Expenses");
 
             migrationBuilder.DropTable(
-                name: "Sales");
-
-            migrationBuilder.DropTable(
                 name: "ToDoLists");
 
             migrationBuilder.DropTable(
-                name: "Employees");
+                name: "Projects");
 
             migrationBuilder.DropTable(
-                name: "Projects");
+                name: "Sales");
+
+            migrationBuilder.DropTable(
+                name: "Employees");
         }
     }
 }

@@ -25,8 +25,8 @@ namespace ProjeYonetim.Entities
         public decimal ExpenseAmount { get; set; }
 
         [ForeignKey(nameof(Project))]
-        [DisplayName("Proje")]
         public int ProjectId { get; set; }
+        [DisplayName("Proje")]
         public Project Project { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Create";
+    var projectSales = ViewData["SalesId"] as SelectList;
 }
 
 <h1 class="text-center text-monospace text-info mt-5">Proje Ekle</h1>
@@ -11,6 +12,10 @@
     <div class="col-md-6">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SalesId" class="control-label"></label>
+                <select asp-for="SalesId" class="form-control shadow-lg" asp-items="projectSales"></select>
+            </div>
             <div class="form-group">
                 <label asp-for="ProjectName" class="control-label"></label>
                 <input asp-for="ProjectName" class="form-control shadow-lg" />
@@ -30,11 +35,6 @@
                 <label asp-for="EndDate" class="control-label"></label>
                 <input asp-for="EndDate" class="form-control shadow-lg" />
                 <span asp-validation-for="EndDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control shadow-lg" />
-                <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Oluştur" class="btn btn-success btn-block " />

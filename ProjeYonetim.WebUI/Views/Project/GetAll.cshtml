@@ -10,6 +10,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Sales)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.ProjectName)
             </th>
             <th>
@@ -20,38 +23,35 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.EndDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
+            </th>            
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProjectName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProjectDetail)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EndDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td class="text-center">
-                    <a asp-action="Update" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a> |
-                    <a asp-action="GetById" asp-route-id="@item.Id"><i class="fas fa-info-circle"></i></a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i></a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sales.SalesName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectDetail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td class="text-center">
+                <a asp-action="Update" asp-route-id="@item.Id"><i class="btn btn-warning fas fa-edit"></i></a>
+                <a asp-action="GetById" asp-route-id="@item.Id"><i class="btn btn-info fas fa-info-circle"></i></a>
+                <a asp-action="Delete" asp-route-id="@item.Id"><i class="btn btn-danger fas fa-trash-alt"></i></a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
