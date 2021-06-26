@@ -9,6 +9,11 @@ namespace ProjeYonetim.Entities
 {
     public class Employee
     {
+        public Employee()
+        {
+            this.LastUpdateDate = DateTime.Now;
+        }
+
         [Key]
         public int Id { get; set; }
 
@@ -39,7 +44,7 @@ namespace ProjeYonetim.Entities
 
         [Required]
         [DataType(DataType.DateTime)]
-        [Column(TypeName = "date")]
+        [Column(TypeName = "datetime")]
         [DisplayName("Güncelleme Tarihi")]
         public DateTime LastUpdateDate { get; set; }
 

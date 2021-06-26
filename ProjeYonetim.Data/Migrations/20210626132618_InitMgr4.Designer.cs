@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjeYonetim.Data;
 
 namespace ProjeYonetim.Data.Migrations
 {
     [DbContext(typeof(ProjeYonetimDbContext))]
-    partial class ProjeYonetimDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210626132618_InitMgr4")]
+    partial class InitMgr4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,7 +46,9 @@ namespace ProjeYonetim.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("LastUpdateDate")
-                        .HasColumnType("datetime");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("date")
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<decimal>("Salary")
                         .HasColumnType("decimal(8,2)");

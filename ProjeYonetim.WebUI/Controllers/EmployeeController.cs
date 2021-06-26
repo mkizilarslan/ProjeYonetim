@@ -23,6 +23,7 @@ namespace ProjeYonetim.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
+            
             var employeeList = await _employeeService.EmployeeGetAllAsync();
             return View(employeeList);
         }

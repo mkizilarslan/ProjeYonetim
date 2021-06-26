@@ -40,7 +40,7 @@ namespace ProjeYonetim.Entities
         [DisplayName("Bitiş Tarihi")]
         public DateTime EndDate { get; set; }
 
-  
+
         public IList<EmployeeProject> EmployeeProjects { get; set; }
         public IList<Expense> Expenses { get; set; }
         public IList<ToDoList> ToDoLists { get; set; }

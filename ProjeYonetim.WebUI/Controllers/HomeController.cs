@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ProjeYonetim.Data.Concrete.EFCore;
 using ProjeYonetim.WebUI.Models;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace ProjeYonetim.WebUI.Controllers
 
         public IActionResult Index()
         {
+            SeedDatabase.Seed();
             return View();
         }
 

@@ -1,14 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProjeYonetim.Business.Abstract;
 using ProjeYonetim.Business.Concrete;
+using ProjeYonetim.Data;
 using ProjeYonetim.Data.Abstract;
 using ProjeYonetim.Data.Concrete.EFCore;
 using ProjeYonetim.WebUI.Data;
@@ -40,7 +39,6 @@ namespace ProjeYonetim.WebUI
             services.AddScoped<IExpenseService, ExpenseManager>();
             services.AddScoped<ISalesService, SalesManager>();
             services.AddScoped<IToDoListService, ToDoListManager>();
-
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(

@@ -21,13 +21,6 @@ namespace ProjeYonetim.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-
-
-            modelBuilder.Entity<Employee>()
-                .Property(x => x.LastUpdateDate)
-                .HasDefaultValueSql("CURRENT_TIMESTAMP");
-
         }
     }
 }

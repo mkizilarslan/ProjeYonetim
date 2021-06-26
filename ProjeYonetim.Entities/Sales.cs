@@ -39,5 +39,6 @@ namespace ProjeYonetim.Entities
         public decimal Price { get; set; }
 
         public IList<Project> Projects { get; set; }
+
     }
 }
