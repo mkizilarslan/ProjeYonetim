@@ -30,7 +30,7 @@ namespace ProjeYonetim.MvcWeb.Controllers
             return View(users);
         }
 
-        public IActionResult AddUserRole(string id)
+        public IActionResult AddOrUpdateUserRole(string id)
         {
             ViewData["user"] = _context.Users.FirstOrDefaultAsync(x => x.Id == id).Result.UserName;
             ViewData["roles"] = new SelectList(_roleManager.Roles, nameof(IdentityRole.Name), nameof(IdentityRole.Name));
