@@ -61,7 +61,7 @@ namespace ProjeYonetim.MvcWeb
                     appContext.Database.Migrate();
                     pyContext.Database.Migrate();
                     SeedDatabase.Seed();
-                    _ = AdminCreated.Seed(appContext, userMngr);
+                    _ = AdminCreated.Seed(userMngr);
                 }
                 app.UseDeveloperExceptionPage();
                 app.UseMigrationsEndPoint();

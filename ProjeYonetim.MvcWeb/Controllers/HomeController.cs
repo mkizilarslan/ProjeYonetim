@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProjeYonetim.MvcWeb.Data;
 using ProjeYonetim.MvcWeb.Models;
+using System;
 using System.Diagnostics;
 
 namespace ProjeYonetim.MvcWeb.Controllers
@@ -12,17 +13,14 @@ namespace ProjeYonetim.MvcWeb.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly ApplicationDbContext _context;
-        public HomeController(ILogger<HomeController> logger, UserManager<IdentityUser> userManager, ApplicationDbContext context)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _userManager = userManager;
-            _context = context;
         }
 
         public IActionResult Index()
         {
+            _logger.LogInformation("Giriş yapıldı. " + DateTime.Now);
             return View();
         }
 
