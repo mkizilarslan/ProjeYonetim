@@ -4,9 +4,10 @@
     ViewData["Title"] = "GetAll";
 }
 
-<h1 class="text-monospace  text-info text-center mt-2">Giderler</h1>
+<h1 class="text-monospace  text-info text-center m-4">Giderler</h1>
+<input class="form-control d-inline-block col-md-3" type="search" id="myInput" placeholder="Search..." onkeyup="myFunction()" aria-label="Search">
 <a class="btn btn-success float-right mb-2 col-md-2" asp-action="Create"><i class="fas fa-plus-square"> </i> Gider Ekle</a>
-<table class="table table-bordered table-sm table-hover table-striped mt-1">
+<table id="myTable" class="table table-bordered table-sm table-hover table-striped mt-1">
     <thead>
         <tr>
             <th>
