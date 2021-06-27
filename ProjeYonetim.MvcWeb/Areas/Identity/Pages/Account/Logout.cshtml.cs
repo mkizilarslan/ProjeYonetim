@@ -28,8 +28,9 @@ namespace ProjeYonetim.MvcWeb.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
+            var user = _signInManager.UserManager.GetUserAsync(User).Result;
             await _signInManager.SignOutAsync();
-            _logger.LogInformation("User logged out.");
+            _logger.LogInformation($"{user.UserName} isimli kullanıcı çıkış yaptı.");
             if (returnUrl != null)
             {
                 return LocalRedirect(returnUrl);

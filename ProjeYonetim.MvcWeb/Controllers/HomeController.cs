@@ -9,7 +9,9 @@ using System.Diagnostics;
 
 namespace ProjeYonetim.MvcWeb.Controllers
 {
+#if! DEBUG
     [Authorize]
+#endif
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -20,7 +22,6 @@ namespace ProjeYonetim.MvcWeb.Controllers
 
         public IActionResult Index()
         {
-            _logger.LogInformation("Giriş yapıldı. " + DateTime.Now);
             return View();
         }
 

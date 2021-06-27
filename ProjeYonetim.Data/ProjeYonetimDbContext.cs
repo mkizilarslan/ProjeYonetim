@@ -17,6 +17,7 @@ namespace ProjeYonetim.Data
         public DbSet<Expense> Expenses { get; set; }
         public DbSet<Sales> Sales { get; set; }
         public DbSet<ToDoList> ToDoLists { get; set; }
+        public DbSet<Logs> Logs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
