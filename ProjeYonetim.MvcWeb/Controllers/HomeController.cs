@@ -26,23 +26,8 @@ namespace ProjeYonetim.MvcWeb.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-
-#if DEBUG
-            if (!_context.Users.Any())
-            {
-                var user = new IdentityUser { UserName = "Admin", NormalizedUserName = "ADMIN", Email = "admin@mksoft.com.tr", NormalizedEmail = "ADMIN@MKSOFT.COM.TR", EmailConfirmed = true, PhoneNumber = "01234567890", PasswordHash = "Aa.12345" };
-                var result = await _userManager.CreateAsync(user, user.PasswordHash);
-                if (result.Succeeded)
-                {
-                    var addRoleToUser = await _userManager.AddToRoleAsync(user, "Admin");
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var result1 = await _userManager.ConfirmEmailAsync(user, code);
-                }
-            }
-            SeedDatabase.Seed();
-#endif
             return View();
         }
 

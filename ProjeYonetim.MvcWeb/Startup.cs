@@ -4,11 +4,14 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProjeYonetim.Business.Abstract;
 using ProjeYonetim.Business.Concrete;
+using ProjeYonetim.Data;
 using ProjeYonetim.Data.Abstract;
 using ProjeYonetim.Data.Concrete.EFCore;
 using ProjeYonetim.MvcWeb.Data;
@@ -31,26 +34,23 @@ namespace ProjeYonetim.MvcWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<IEmployeeProjectRepository, EmployeeProjectRepository>();
             services.AddScoped<IExpenseRepository, ExpenseRepository>();
             services.AddScoped<ISalesRepository, SalesRepository>();
             services.AddScoped<IToDoListRepository, ToDoListRepository>();
-
             services.AddScoped<IEmployeeService, EmployeeManager>();
             services.AddScoped<IProjectService, ProjectManager>();
             services.AddScoped<IEmployeeProjectService, EmployeeProjectManager>();
             services.AddScoped<IExpenseService, ExpenseManager>();
             services.AddScoped<ISalesService, SalesManager>();
             services.AddScoped<IToDoListService, ToDoListManager>();
-
+            services.AddDbContext<ProjeYonetimDbContext>();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
-
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -58,10 +58,17 @@ namespace ProjeYonetim.MvcWeb
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext appContext, ProjeYonetimDbContext pyContext, UserManager<IdentityUser> userMngr)
         {
             if (env.IsDevelopment())
             {
+                if (!appContext.Database.GetService<IRelationalDatabaseCreator>().Exists())
+                {
+                    appContext.Database.Migrate();
+                    pyContext.Database.Migrate();
+                    SeedDatabase.Seed();
+                    _ = AdminCreated.Seed(appContext, userMngr);
+                }
                 app.UseDeveloperExceptionPage();
                 app.UseMigrationsEndPoint();
             }

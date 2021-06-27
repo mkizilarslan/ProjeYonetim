@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using ProjeYonetim.Entities;
 using ProjeYonetim.Entities.Constant;
 using System;
@@ -6,10 +7,8 @@ using System.Linq;
 
 namespace ProjeYonetim.Data.Concrete.EFCore
 {
-    public static class SeedDatabase
+    public class SeedDatabase
     {
-
-
         private static readonly Employee[] Employees =
         {
             new Employee() {IsActive=true, FullName = "Mücahit Kızılarslan", Gender = Gender.Erkek, DateOfBirth = new DateTime(1991, 11, 15), Department = Department.Yönetim, Salary = 12000, LastUpdateDate = DateTime.Now.Date },
@@ -262,26 +261,21 @@ namespace ProjeYonetim.Data.Concrete.EFCore
 
         public static void Seed()
         {
-            var context = new ProjeYonetimDbContext();
-
-            if (!context.Database.EnsureCreated())
-            {
-                if (!context.Employees.Any() && !context.Sales.Any() && !context.Projects.Any() && !context.ToDoLists.Any() && !context.Expenses.Any() && !context.EmployeeProjects.Any())
-                {
-                    context.Employees.AddRange(Employees);
-                    context.SaveChanges();
-                    context.Sales.AddRange(Sales);
-                    context.SaveChanges();
-                    context.Projects.AddRange(Projects);
-                    context.SaveChanges();
-                    context.EmployeeProjects.AddRange(EmployeeProjects);
-                    context.SaveChanges();
-                    context.ToDoLists.AddRange(ToDoLists);
-                    context.SaveChanges();
-                    context.Expenses.AddRangeAsync(Expenses);
-                    context.SaveChanges();
-                }
-            }
+            var _context = new ProjeYonetimDbContext();
+            _context.Employees.AddRange(Employees);
+            _context.SaveChanges();
+            _context.Sales.AddRange(Sales);
+            _context.SaveChanges();
+            _context.Projects.AddRange(Projects);
+            _context.SaveChanges();
+            _context.EmployeeProjects.AddRange(EmployeeProjects);
+            _context.SaveChanges();
+            _context.ToDoLists.AddRange(ToDoLists);
+            _context.SaveChanges();
+            _context.Expenses.AddRangeAsync(Expenses);
+            _context.SaveChanges();
         }
     }
 }
+
+
