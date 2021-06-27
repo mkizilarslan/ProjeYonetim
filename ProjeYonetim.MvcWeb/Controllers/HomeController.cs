@@ -2,14 +2,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ProjeYonetim.Data.Concrete.EFCore;
 using ProjeYonetim.MvcWeb.Data;
 using ProjeYonetim.MvcWeb.Models;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProjeYonetim.MvcWeb.Controllers
 {

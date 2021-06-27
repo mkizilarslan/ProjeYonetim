@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -15,10 +13,6 @@ using ProjeYonetim.Data;
 using ProjeYonetim.Data.Abstract;
 using ProjeYonetim.Data.Concrete.EFCore;
 using ProjeYonetim.MvcWeb.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProjeYonetim.MvcWeb
 {
