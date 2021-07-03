@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using ProjeYonetim.Business.Abstract;
 using ProjeYonetim.Entities;
 using System.Threading.Tasks;
@@ -9,9 +10,11 @@ namespace ProjeYonetim.Web.Controllers
     [Authorize(Roles = "Admin")]
     public class EmployeeController : Controller
     {
+        private readonly ILogger<EmployeeController> _logger;
         private readonly IEmployeeService _employeeService;
-        public EmployeeController(IEmployeeService employeeService)
+        public EmployeeController(ILogger<EmployeeController> logger, IEmployeeService employeeService)
         {
+            _logger = logger;
             _employeeService = employeeService;
         }
 
@@ -42,6 +45,7 @@ namespace ProjeYonetim.Web.Controllers
             if (ModelState.IsValid)
             {
                 await _employeeService.EmployeeCreateAsync(employee);
+                _logger.LogInformation($"{employee.FullName} isimli personel oluşturuldu.");
                 return RedirectToAction(nameof(GetAll));
             }
             return View(employee);
@@ -60,6 +64,7 @@ namespace ProjeYonetim.Web.Controllers
             if (ModelState.IsValid)
             {
                 await _employeeService.EmployeeUpdateAsync(employee);
+                _logger.LogInformation($"{employee.FullName} isimli personel güncellendi.");
                 return RedirectToAction(nameof(GetAll));
             }
             return View(employee);
@@ -78,6 +83,7 @@ namespace ProjeYonetim.Web.Controllers
             if (ModelState.IsValid)
             {
                 await _employeeService.EmployeeDeleteAsync(employee);
+                _logger.LogInformation($"{employee.FullName} isimli personel silindi.");
                 return RedirectToAction(nameof(GetAll));
             }
             return View(employee);
